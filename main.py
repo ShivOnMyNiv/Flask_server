@@ -219,7 +219,6 @@ def generateTags(champPerf, staticChamp, name):
 # importing necessary stuff to get riot Data_Dragon
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
-import StoreChampAverages
 
 # Updating Datadragon jsons
 champIndex = 0
@@ -235,10 +234,6 @@ def updateJSON():
         print("finished updating")
     else:
         print("no update needed")
-    # Replacing one champ's average stats
-    champList = list(champ.keys())
-    StoreChampAverages.getStats(champList[champIndex])
-    champIndex = (champIndex + 1) % len(champList)
             
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=updateJSON, trigger="interval", seconds=60)
