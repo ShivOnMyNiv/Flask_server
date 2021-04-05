@@ -236,7 +236,7 @@ def updateJSON():
         print("no update needed")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=updateJSON, trigger="interval", seconds=60)
+scheduler.add_job(func=updateJSON, trigger="interval", seconds=3600)
 
 scheduler.start()
 
@@ -571,6 +571,11 @@ def getSummoner():
         return jsonify(summoner)
     except Exception as e:
         return jsonify(str(e))
+
+@app.route("/riot.txt")
+def verificationText():
+    with open("riot.txt", 'r') as file:
+        return file.read()
 
 if __name__ == "__main__":
     #app.run()
